@@ -16,56 +16,28 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-pre, code { background-color: #f8f8f8; }
-code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code > span.dt { color: #204a87; } /* DataType */
-code > span.dv { color: #0000cf; } /* DecVal */
-code > span.bn { color: #0000cf; } /* BaseN */
-code > span.fl { color: #0000cf; } /* Float */
-code > span.ch { color: #4e9a06; } /* Char */
-code > span.st { color: #4e9a06; } /* String */
-code > span.co { color: #8f5902; font-style: italic; } /* Comment */
-code > span.ot { color: #8f5902; } /* Other */
-code > span.al { color: #ef2929; } /* Alert */
-code > span.fu { color: #000000; } /* Function */
-code > span.er { color: #a40000; font-weight: bold; } /* Error */
-code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #000000; } /* Constant */
-code > span.sc { color: #000000; } /* SpecialChar */
-code > span.vs { color: #4e9a06; } /* VerbatimString */
-code > span.ss { color: #4e9a06; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #000000; } /* Variable */
-code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code > span.ex { } /* Extension */
-code > span.at { color: #c4a000; } /* Attribute */
-code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-</style>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
   }
 </style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
 
 
 <style type="text/css">
@@ -126,34 +98,34 @@ button.code-folding-btn:focus {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 52px;
+  padding-top: 51px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 57px;
-  margin-top: -57px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 
 .section h2 {
-  padding-top: 57px;
-  margin-top: -57px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h3 {
-  padding-top: 57px;
-  margin-top: -57px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h4 {
-  padding-top: 57px;
-  margin-top: -57px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h5 {
-  padding-top: 57px;
-  margin-top: -57px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 .section h6 {
-  padding-top: 57px;
-  margin-top: -57px;
+  padding-top: 56px;
+  margin-top: -56px;
 }
 </style>
 
@@ -250,18 +222,17 @@ $(document).ready(function () {
 body {
 text-align: justify}
 </style>
-<p><br></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ----------------------------------------------------------------------</span>
-<span class="co"># Loading libraries</span>
-<span class="co"># ----------------------------------------------------------------------</span>
-<span class="kw">library</span>(MASS)
-<span class="kw">library</span>(plotly)
-<span class="kw">library</span>(ggplot2)
-<span class="kw">library</span>(data.table)
+<pre class="r"><code># ----------------------------------------------------------------------
+# Loading libraries
+# ----------------------------------------------------------------------
+library(MASS)
+library(plotly)
+library(ggplot2)
+library(data.table)
 
-<span class="co"># Other</span>
-<span class="kw">library</span>(knitr)
-<span class="kw">library</span>(psych)</code></pre></div>
+# Other
+library(knitr)
+library(psych)</code></pre>
 <p>Before we begin predictive modelling or machine learning, it is essential to understand the data and describe relationships between variables. Often preparatory steps are needed before we build and models. In this section we will understand variables using:</p>
 <ul>
 <li>Univariate analysis</li>
@@ -269,6 +240,7 @@ text-align: justify}
 <li>Outlier detection</li>
 <li>Missing value treatment</li>
 </ul>
+<p><br></p>
 <div id="univariate-analysis." class="section level1">
 <h1><span class="header-section-number">1</span> Univariate analysis.</h1>
 <p>In this section we will focus on trying to understand:</p>
@@ -280,36 +252,25 @@ text-align: justify}
 <div id="types-of-variables." class="section level2">
 <h2><span class="header-section-number">1.1</span> Types of variables.</h2>
 <p>We encounter 2 types of variables: continuous or categorical variables. You can check the classificatin of both types of variables in the table below.</p>
-<p><br></p>
-<p><img src="images/1.PNG" width="948" /></p>
-<p><br></p>
+<p><img src="images/1.PNG" width="1293" /></p>
 </div>
 <div id="measures-of-central-tendency" class="section level2">
 <h2><span class="header-section-number">1.2</span> Measures of central tendency</h2>
-<p><br></p>
 <p>A continuous variable requires the most work. When it comes to unvariate analysis, we compute the measure of central tendency and measures of dispersion. You can remember the measures of tendency by the <em>3 Ms</em>: mean, median, mode (mode is actually most useful for categorical data). As per dispersion measures, the coefficient of variation is quite important if we want to compared measures of variables with different ranges.</p>
-<p><br></p>
-<p><img src="images/2.PNG" width="1041" /></p>
-<p><br></p>
+<p><img src="images/2.PNG" width="1324" /></p>
 </div>
 <div id="checking-in-r" class="section level2">
 <h2><span class="header-section-number">1.3</span> Checking in R</h2>
-<p><br></p>
 <p>Check the comments in the R code for any explanations</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING REQUIRED PACKAGES
-<span class="co"># install.packages(&#39;car&#39;) # only run if you haven&#39;t got the package installed.</span>
-<span class="kw">require</span>(car)</code></pre></div>
-<pre><code>## Loading required package: car</code></pre>
-<pre><code>## 
-## Attaching package: &#39;car&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:psych&#39;:
-## 
-##     logit</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING THE DATA FROM THE PACKAGE
-<span class="kw">data</span>(Prestige, <span class="dt">package =</span> <span class="st">&#39;car&#39;</span>)
+<pre class="r"><code>## LOADING REQUIRED PACKAGES
+# install.packages(&#39;car&#39;) # only run if you haven&#39;t got the package installed.
+require(car)
+
+## LOADING THE DATA FROM THE PACKAGE
+data(Prestige, package = &#39;car&#39;)
 
 ## LOOKING AT THE FIRST ROWS FROM THE DATASET
-<span class="kw">head</span>(Prestige)</code></pre></div>
+head(Prestige)</code></pre>
 <pre><code>##                     education income women prestige census type
 ## gov.administrators      13.11  12351 11.16     68.8   1113 prof
 ## general.managers        12.26  25879  4.02     69.1   1130 prof
@@ -318,17 +279,17 @@ text-align: justify}
 ## chemists                14.62   8403 11.68     73.5   2111 prof
 ## physicists              15.64  11030  5.13     77.6   2113 prof</code></pre>
 <p>This data talks about 6 differnt attributes of people in different proffesions. 5 of these variables appear to be numeric and 1 appears to be categorial (type). Let’s take the income variable as an example to check some measures of central tendency.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># In all the checks below you can see we use the argument na.rm=T. This is to ensure that any possible na values are removed from the calculations. I always tend to check the percentage of na per variable to understand if it is worth performing any calculations on them. However, let&#39;s just investigate the measures with the na.rm argument.</span>
+<pre class="r"><code># In all the checks below you can see we use the argument na.rm=T. This is to ensure that any possible na values are removed from the calculations. I always tend to check the percentage of na per variable to understand if it is worth performing any calculations on them. However, let&#39;s just investigate the measures with the na.rm argument.
 
-<span class="kw">mean</span>(Prestige$income, <span class="dt">na.rm =</span> T)</code></pre></div>
+mean(Prestige$income, na.rm = T)</code></pre>
 <pre><code>## [1] 6797.902</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(Prestige$income, <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre class="r"><code>median(Prestige$income, na.rm = T)</code></pre>
 <pre><code>## [1] 5930.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(Prestige$income, <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre class="r"><code>sd(Prestige$income, na.rm = T)</code></pre>
 <pre><code>## [1] 4245.922</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">var</span>(Prestige$income, <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre class="r"><code>var(Prestige$income, na.rm = T)</code></pre>
 <pre><code>## [1] 18027856</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(Prestige$income, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.1</span>,<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>,<span class="fl">0.9</span>,<span class="fl">0.95</span>,<span class="fl">0.99</span>), <span class="dt">na.rm =</span> T)</code></pre></div>
+<pre class="r"><code>quantile(Prestige$income, probs = c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99), na.rm = T)</code></pre>
 <pre><code>##       1%       5%      10%      25%      50%      75%      90%      95%      99% 
 ##   925.38  2455.30  3026.00  4106.00  5930.50  8187.25 11029.30 14156.45 25247.55</code></pre>
 <p>Now this is interesting, but even just performing this analysis on the rest of the variables in this dataset is tedious (even more if we had hundreds of variables). We could use:</p>
@@ -337,7 +298,7 @@ text-align: justify}
 <li>Even better, the <strong>describe()</strong> function from the <strong>Hmisc</strong> package.</li>
 <li><strong>stat.desc()</strong> function from the <strong>pastecs</strong> package.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(Prestige)</code></pre></div>
+<pre class="r"><code>summary(Prestige)</code></pre>
 <pre><code>##    education          income          women           prestige         census       type   
 ##  Min.   : 6.380   Min.   :  611   Min.   : 0.000   Min.   :14.80   Min.   :1113   bc  :44  
 ##  1st Qu.: 8.445   1st Qu.: 4106   1st Qu.: 3.592   1st Qu.:35.23   1st Qu.:3120   prof:31  
@@ -345,27 +306,11 @@ text-align: justify}
 ##  Mean   :10.738   Mean   : 6798   Mean   :28.979   Mean   :46.83   Mean   :5402   NA&#39;s: 4  
 ##  3rd Qu.:12.648   3rd Qu.: 8187   3rd Qu.:52.203   3rd Qu.:59.27   3rd Qu.:8312            
 ##  Max.   :15.970   Max.   :25879   Max.   :97.510   Max.   :87.20   Max.   :9517</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING REQUIRED PACKAGES
-<span class="co"># install.packages(&#39;Hmisc&#39;) # only run if you haven&#39;t got the package installed.</span>
-<span class="kw">require</span>(Hmisc)</code></pre></div>
-<pre><code>## Loading required package: Hmisc</code></pre>
-<pre><code>## Warning: package &#39;Hmisc&#39; was built under R version 3.4.2</code></pre>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## Loading required package: survival</code></pre>
-<pre><code>## Loading required package: Formula</code></pre>
-<pre><code>## Warning: package &#39;Formula&#39; was built under R version 3.4.1</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Hmisc&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:psych&#39;:
-## 
-##     describe</code></pre>
-<pre><code>## The following object is masked from &#39;package:plotly&#39;:
-## 
-##     subplot</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     format.pval, round.POSIXt, trunc.POSIXt, units</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">describe</span>(Prestige)</code></pre></div>
+<pre class="r"><code>## LOADING REQUIRED PACKAGES
+# install.packages(&#39;Hmisc&#39;) # only run if you haven&#39;t got the package installed.
+require(Hmisc)
+
+describe(Prestige)</code></pre>
 <pre><code>## Prestige 
 ## 
 ##  6  Variables      102  Observations
@@ -408,57 +353,36 @@ text-align: justify}
 ## Frequency     44    31    23
 ## Proportion 0.449 0.316 0.235
 ## ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING REQUIRED PACKAGES
-<span class="co"># install.packages(&#39;pastecs&#39;) # only run if you haven&#39;t got the package installed.</span>
-<span class="kw">require</span>(pastecs)</code></pre></div>
-<pre><code>## Loading required package: pastecs</code></pre>
-<pre><code>## Warning: package &#39;pastecs&#39; was built under R version 3.4.2</code></pre>
-<pre><code>## Loading required package: boot</code></pre>
-<pre><code>## 
-## Attaching package: &#39;boot&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:survival&#39;:
-## 
-##     aml</code></pre>
-<pre><code>## The following object is masked from &#39;package:lattice&#39;:
-## 
-##     melanoma</code></pre>
-<pre><code>## The following object is masked from &#39;package:car&#39;:
-## 
-##     logit</code></pre>
-<pre><code>## The following object is masked from &#39;package:psych&#39;:
-## 
-##     logit</code></pre>
-<pre><code>## 
-## Attaching package: &#39;pastecs&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:data.table&#39;:
-## 
-##     first, last</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">stat.desc</span>(Prestige)</code></pre></div>
-<pre><code>##                 education       income       women     prestige       census type
-## nbr.val       102.0000000 1.020000e+02  102.000000  102.0000000 1.020000e+02   NA
-## nbr.null        0.0000000 0.000000e+00    5.000000    0.0000000 0.000000e+00   NA
-## nbr.na          0.0000000 0.000000e+00    0.000000    0.0000000 0.000000e+00   NA
-## min             6.3800000 6.110000e+02    0.000000   14.8000000 1.113000e+03   NA
-## max            15.9700000 2.587900e+04   97.510000   87.2000000 9.517000e+03   NA
-## range           9.5900000 2.526800e+04   97.510000   72.4000000 8.404000e+03   NA
-## sum          1095.2800000 6.933860e+05 2955.860000 4777.0000000 5.509810e+05   NA
-## median         10.5400000 5.930500e+03   13.600000   43.6000000 5.135000e+03   NA
-## mean           10.7380392 6.797902e+03   28.979020   46.8333333 5.401775e+03   NA
-## SE.mean         0.2701562 4.204089e+02    3.141236    1.7034979 2.618934e+02   NA
-## CI.mean.0.95    0.5359173 8.339783e+02    6.231368    3.3792816 5.195260e+02   NA
-## var             7.4444080 1.802786e+07 1006.471223  295.9943234 6.995989e+06   NA
-## std.dev         2.7284442 4.245922e+03   31.724931   17.2044856 2.644993e+03   NA
-## coef.var        0.2540915 6.245930e-01    1.094755    0.3673556 4.896527e-01   NA</code></pre>
+<pre class="r"><code>## LOADING REQUIRED PACKAGES
+# install.packages(&#39;pastecs&#39;) # only run if you haven&#39;t got the package installed.
+require(pastecs)
+
+stat.desc(Prestige)</code></pre>
+<pre><code>##                 education          income       women     prestige          census type
+## nbr.val       102.0000000      102.000000  102.000000  102.0000000     102.0000000   NA
+## nbr.null        0.0000000        0.000000    5.000000    0.0000000       0.0000000   NA
+## nbr.na          0.0000000        0.000000    0.000000    0.0000000       0.0000000   NA
+## min             6.3800000      611.000000    0.000000   14.8000000    1113.0000000   NA
+## max            15.9700000    25879.000000   97.510000   87.2000000    9517.0000000   NA
+## range           9.5900000    25268.000000   97.510000   72.4000000    8404.0000000   NA
+## sum          1095.2800000   693386.000000 2955.860000 4777.0000000  550981.0000000   NA
+## median         10.5400000     5930.500000   13.600000   43.6000000    5135.0000000   NA
+## mean           10.7380392     6797.901961   28.979020   46.8333333    5401.7745098   NA
+## SE.mean         0.2701562      420.408946    3.141236    1.7034979     261.8933533   NA
+## CI.mean.0.95    0.5359173      833.978260    6.231368    3.3792816     519.5259644   NA
+## var             7.4444080 18027855.554650 1006.471223  295.9943234 6995989.1070666   NA
+## std.dev         2.7284442     4245.922227   31.724931   17.2044856    2644.9932149   NA
+## coef.var        0.2540915        0.624593    1.094755    0.3673556       0.4896527   NA</code></pre>
 <p>So as any example, let’s use this to understand better the <strong>Cars93</strong> dataset from the <strong>MASS</strong> package and check one individual column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING REQUIRED PACKAGES
-<span class="co"># install.packages(&#39;MASS&#39;) # only run if you haven&#39;t got the package installed.</span>
-<span class="kw">require</span>(MASS)
+<pre class="r"><code>## LOADING REQUIRED PACKAGES
+# install.packages(&#39;MASS&#39;) # only run if you haven&#39;t got the package installed.
+require(MASS)
 
 ## LOADING THE DATA FROM THE PACKAGE
-<span class="kw">data</span>(Cars93, <span class="dt">package =</span> <span class="st">&#39;MASS&#39;</span>)
+data(Cars93, package = &#39;MASS&#39;)
 
 ## LOOKING AT THE FIRST ROWS FROM THE DATASET
-<span class="kw">head</span>(Cars93)</code></pre></div>
+head(Cars93)</code></pre>
 <pre><code>##   Manufacturer   Model    Type Min.Price Price Max.Price MPG.city MPG.highway            AirBags DriveTrain Cylinders EngineSize Horsepower  RPM Rev.per.mile Man.trans.avail Fuel.tank.capacity Passengers Length Wheelbase Width Turn.circle
 ## 1        Acura Integra   Small      12.9  15.9      18.8       25          31               None      Front         4        1.8        140 6300         2890             Yes               13.2          5    177       102    68          37
 ## 2        Acura  Legend Midsize      29.2  33.9      38.7       18          25 Driver &amp; Passenger      Front         6        3.2        200 5500         2335             Yes               18.0          5    195       115    71          38
@@ -473,8 +397,8 @@ text-align: justify}
 ## 4           31.0           17   3405 non-USA      Audi 100
 ## 5           27.0           13   3640 non-USA      BMW 535i
 ## 6           28.0           16   2880     USA Buick Century</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Summary
-<span class="kw">summary</span>(Cars93)</code></pre></div>
+<pre class="r"><code>## Summary
+summary(Cars93)</code></pre>
 <pre><code>##     Manufacturer     Model         Type      Min.Price         Price         Max.Price       MPG.city      MPG.highway                  AirBags   DriveTrain  Cylinders    EngineSize      Horsepower         RPM        Rev.per.mile  Man.trans.avail
 ##  Chevrolet: 8    100    : 1   Compact:16   Min.   : 6.70   Min.   : 7.40   Min.   : 7.9   Min.   :15.00   Min.   :20.00   Driver &amp; Passenger:16   4WD  :10   3     : 3   Min.   :1.000   Min.   : 55.0   Min.   :3800   Min.   :1320   No :32         
 ##  Ford     : 8    190E   : 1   Large  :11   1st Qu.:10.80   1st Qu.:12.20   1st Qu.:14.7   1st Qu.:18.00   1st Qu.:26.00   Driver only       :43   Front:67   4     :49   1st Qu.:1.800   1st Qu.:103.0   1st Qu.:4800   1st Qu.:1985   Yes:61         
@@ -491,8 +415,8 @@ text-align: justify}
 ##  3rd Qu.:18.80      3rd Qu.:6.000   3rd Qu.:192.0   3rd Qu.:110.0   3rd Qu.:72.00   3rd Qu.:41.00   3rd Qu.:30.00   3rd Qu.:15.00   3rd Qu.:3525                BMW 535i     : 1  
 ##  Max.   :27.00      Max.   :8.000   Max.   :219.0   Max.   :119.0   Max.   :78.00   Max.   :45.00   Max.   :36.00   Max.   :22.00   Max.   :4105                Buick Century: 1  
 ##                                                                                                     NA&#39;s   :2       NA&#39;s   :11                                  (Other)      :87</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## 
-<span class="kw">describe</span>(Cars93)</code></pre></div>
+<pre class="r"><code>## 
+describe(Cars93)</code></pre>
 <pre><code>## Cars93 
 ## 
 ##  27  Variables      93  Observations
@@ -679,93 +603,80 @@ text-align: justify}
 ## 
 ## lowest : Acura Integra      Acura Legend       Audi 100           Audi 90            BMW 535i          , highest: Volkswagen Eurovan Volkswagen Fox     Volkswagen Passat  Volvo 240          Volvo 850         
 ## ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## stat desc -&gt; the only weakness of this functon is that it doesn&#39;t offer any information about categorial variables
-<span class="kw">stat.desc</span>(Cars93)</code></pre></div>
-<pre><code>##          Manufacturer Model Type   Min.Price        Price    Max.Price     MPG.city  MPG.highway AirBags DriveTrain Cylinders  EngineSize   Horsepower          RPM Rev.per.mile Man.trans.avail Fuel.tank.capacity  Passengers       Length    Wheelbase
-## nbr.val            NA    NA   NA   93.000000   93.0000000   93.0000000   93.0000000   93.0000000      NA         NA        NA  93.0000000 9.300000e+01 9.300000e+01 9.300000e+01              NA         93.0000000  93.0000000 9.300000e+01   93.0000000
-## nbr.null           NA    NA   NA    0.000000    0.0000000    0.0000000    0.0000000    0.0000000      NA         NA        NA   0.0000000 0.000000e+00 0.000000e+00 0.000000e+00              NA          0.0000000   0.0000000 0.000000e+00    0.0000000
-## nbr.na             NA    NA   NA    0.000000    0.0000000    0.0000000    0.0000000    0.0000000      NA         NA        NA   0.0000000 0.000000e+00 0.000000e+00 0.000000e+00              NA          0.0000000   0.0000000 0.000000e+00    0.0000000
-## min                NA    NA   NA    6.700000    7.4000000    7.9000000   15.0000000   20.0000000      NA         NA        NA   1.0000000 5.500000e+01 3.800000e+03 1.320000e+03              NA          9.2000000   2.0000000 1.410000e+02   90.0000000
-## max                NA    NA   NA   45.400000   61.9000000   80.0000000   46.0000000   50.0000000      NA         NA        NA   5.7000000 3.000000e+02 6.500000e+03 3.755000e+03              NA         27.0000000   8.0000000 2.190000e+02  119.0000000
-## range              NA    NA   NA   38.700000   54.5000000   72.1000000   31.0000000   30.0000000      NA         NA        NA   4.7000000 2.450000e+02 2.700000e+03 2.435000e+03              NA         17.8000000   6.0000000 7.800000e+01   29.0000000
-## sum                NA    NA   NA 1592.700000 1814.4000000 2036.6000000 2080.0000000 2705.0000000      NA         NA        NA 248.1000000 1.337600e+04 4.911000e+05 2.168950e+05              NA       1549.8000000 473.0000000 1.703800e+04 9667.0000000
-## median             NA    NA   NA   14.700000   17.7000000   19.6000000   21.0000000   28.0000000      NA         NA        NA   2.4000000 1.400000e+02 5.200000e+03 2.340000e+03              NA         16.4000000   5.0000000 1.830000e+02  103.0000000
-## mean               NA    NA   NA   17.125806   19.5096774   21.8989247   22.3655914   29.0860215      NA         NA        NA   2.6677419 1.438280e+02 5.280645e+03 2.332204e+03              NA         16.6645161   5.0860215 1.832043e+02  103.9462366
-## SE.mean            NA    NA   NA    0.906921    1.0016362    1.1438051    0.5827473    0.5528742      NA         NA        NA   0.1075695 5.430973e+00 6.187819e+01 5.148533e+01              NA          0.3400549   0.1077371 1.514196e+00    0.7071672
-## CI.mean            NA    NA   NA    1.801223    1.9893359    2.2716956    1.1573865    1.0980560      NA         NA        NA   0.2136424 1.078638e+01 1.228954e+02 1.022543e+02              NA          0.6753783   0.2139751 3.007325e+00    1.4044951
-## var                NA    NA   NA   76.493022   93.3045792  121.6709771   31.5822814   28.4273025      NA         NA        NA   1.0761220 2.743079e+03 3.560887e+05 2.465187e+05              NA         10.7542707   1.0794764 2.132295e+02   46.5079476
-## std.dev            NA    NA   NA    8.746029    9.6594296   11.0304568    5.6198115    5.3317260      NA         NA        NA   1.0373630 5.237441e+01 5.967317e+02 4.965065e+02              NA          3.2793705   1.0389785 1.460238e+01    6.8196736
-## coef.var           NA    NA   NA    0.510693    0.4951096    0.5036986    0.2512704    0.1833089      NA         NA        NA   0.3888543 3.641462e-01 1.130036e-01 2.128915e-01              NA          0.1967876   0.2042812 7.970545e-02    0.0656077
-##                 Width  Turn.circle Rear.seat.room Luggage.room       Weight Origin Make
-## nbr.val  9.300000e+01 9.300000e+01     91.0000000   82.0000000 9.300000e+01     NA   NA
-## nbr.null 0.000000e+00 0.000000e+00      0.0000000    0.0000000 0.000000e+00     NA   NA
-## nbr.na   0.000000e+00 0.000000e+00      2.0000000   11.0000000 0.000000e+00     NA   NA
-## min      6.000000e+01 3.200000e+01     19.0000000    6.0000000 1.695000e+03     NA   NA
-## max      7.800000e+01 4.500000e+01     36.0000000   22.0000000 4.105000e+03     NA   NA
-## range    1.800000e+01 1.300000e+01     17.0000000   16.0000000 2.410000e+03     NA   NA
-## sum      6.452000e+03 3.623000e+03   2532.5000000 1139.0000000 2.857800e+05     NA   NA
-## median   6.900000e+01 3.900000e+01     27.5000000   14.0000000 3.040000e+03     NA   NA
-## mean     6.937634e+01 3.895699e+01     27.8296703   13.8902439 3.072903e+03     NA   NA
-## SE.mean  3.918626e-01 3.342370e-01      0.3133399    0.3310700 6.116942e+01     NA   NA
-## CI.mean  7.782730e-01 6.638235e-01      0.6225045    0.6587255 1.214877e+02     NA   NA
-## var      1.428074e+01 1.038943e+01      8.9345543    8.9878049 3.479779e+05     NA   NA
-## std.dev  3.778986e+00 3.223265e+00      2.9890725    2.9979668 5.898965e+02     NA   NA
-## coef.var 5.447082e-02 8.273906e-02      0.1074060    0.2158326 1.919672e-01     NA   NA</code></pre>
+<pre class="r"><code>## stat desc -&gt; the only weakness of this functon is that it doesn&#39;t offer any information about categorial variables
+stat.desc(Cars93)</code></pre>
+<pre><code>##          Manufacturer Model Type   Min.Price        Price    Max.Price     MPG.city  MPG.highway AirBags DriveTrain Cylinders  EngineSize    Horsepower            RPM   Rev.per.mile Man.trans.avail Fuel.tank.capacity  Passengers         Length
+## nbr.val            NA    NA   NA   93.000000   93.0000000   93.0000000   93.0000000   93.0000000      NA         NA        NA  93.0000000    93.0000000     93.0000000     93.0000000              NA         93.0000000  93.0000000    93.00000000
+## nbr.null           NA    NA   NA    0.000000    0.0000000    0.0000000    0.0000000    0.0000000      NA         NA        NA   0.0000000     0.0000000      0.0000000      0.0000000              NA          0.0000000   0.0000000     0.00000000
+## nbr.na             NA    NA   NA    0.000000    0.0000000    0.0000000    0.0000000    0.0000000      NA         NA        NA   0.0000000     0.0000000      0.0000000      0.0000000              NA          0.0000000   0.0000000     0.00000000
+## min                NA    NA   NA    6.700000    7.4000000    7.9000000   15.0000000   20.0000000      NA         NA        NA   1.0000000    55.0000000   3800.0000000   1320.0000000              NA          9.2000000   2.0000000   141.00000000
+## max                NA    NA   NA   45.400000   61.9000000   80.0000000   46.0000000   50.0000000      NA         NA        NA   5.7000000   300.0000000   6500.0000000   3755.0000000              NA         27.0000000   8.0000000   219.00000000
+## range              NA    NA   NA   38.700000   54.5000000   72.1000000   31.0000000   30.0000000      NA         NA        NA   4.7000000   245.0000000   2700.0000000   2435.0000000              NA         17.8000000   6.0000000    78.00000000
+## sum                NA    NA   NA 1592.700000 1814.4000000 2036.6000000 2080.0000000 2705.0000000      NA         NA        NA 248.1000000 13376.0000000 491100.0000000 216895.0000000              NA       1549.8000000 473.0000000 17038.00000000
+## median             NA    NA   NA   14.700000   17.7000000   19.6000000   21.0000000   28.0000000      NA         NA        NA   2.4000000   140.0000000   5200.0000000   2340.0000000              NA         16.4000000   5.0000000   183.00000000
+## mean               NA    NA   NA   17.125806   19.5096774   21.8989247   22.3655914   29.0860215      NA         NA        NA   2.6677419   143.8279570   5280.6451613   2332.2043011              NA         16.6645161   5.0860215   183.20430108
+## SE.mean            NA    NA   NA    0.906921    1.0016362    1.1438051    0.5827473    0.5528742      NA         NA        NA   0.1075695     5.4309733     61.8781937     51.4853283              NA          0.3400549   0.1077371     1.51419643
+## CI.mean            NA    NA   NA    1.801223    1.9893359    2.2716956    1.1573865    1.0980560      NA         NA        NA   0.2136424    10.7863817    122.8954338    102.2543060              NA          0.6753783   0.2139751     3.00732481
+## var                NA    NA   NA   76.493022   93.3045792  121.6709771   31.5822814   28.4273025      NA         NA        NA   1.0761220  2743.0787751 356088.7096774 246518.7295465              NA         10.7542707   1.0794764   213.22954652
+## std.dev            NA    NA   NA    8.746029    9.6594296   11.0304568    5.6198115    5.3317260      NA         NA        NA   1.0373630    52.3744095    596.7316899    496.5065252              NA          3.2793705   1.0389785    14.60238154
+## coef.var           NA    NA   NA    0.510693    0.4951096    0.5036986    0.2512704    0.1833089      NA         NA        NA   0.3888543     0.3641462      0.1130036      0.2128915              NA          0.1967876   0.2042812     0.07970545
+##             Wheelbase         Width   Turn.circle Rear.seat.room Luggage.room         Weight Origin Make
+## nbr.val    93.0000000   93.00000000   93.00000000     91.0000000   82.0000000     93.0000000     NA   NA
+## nbr.null    0.0000000    0.00000000    0.00000000      0.0000000    0.0000000      0.0000000     NA   NA
+## nbr.na      0.0000000    0.00000000    0.00000000      2.0000000   11.0000000      0.0000000     NA   NA
+## min        90.0000000   60.00000000   32.00000000     19.0000000    6.0000000   1695.0000000     NA   NA
+## max       119.0000000   78.00000000   45.00000000     36.0000000   22.0000000   4105.0000000     NA   NA
+## range      29.0000000   18.00000000   13.00000000     17.0000000   16.0000000   2410.0000000     NA   NA
+## sum      9667.0000000 6452.00000000 3623.00000000   2532.5000000 1139.0000000 285780.0000000     NA   NA
+## median    103.0000000   69.00000000   39.00000000     27.5000000   14.0000000   3040.0000000     NA   NA
+## mean      103.9462366   69.37634409   38.95698925     27.8296703   13.8902439   3072.9032258     NA   NA
+## SE.mean     0.7071672    0.39186264    0.33423696      0.3133399    0.3310700     61.1694186     NA   NA
+## CI.mean     1.4044951    0.77827303    0.66382346      0.6225045    0.6587255    121.4877453     NA   NA
+## var        46.5079476   14.28073866   10.38943432      8.9345543    8.9878049 347977.8927069     NA   NA
+## std.dev     6.8196736    3.77898646    3.22326454      2.9890725    2.9979668    589.8965102     NA   NA
+## coef.var    0.0656077    0.05447082    0.08273906      0.1074060    0.2158326      0.1919672     NA   NA</code></pre>
 <p><br></p>
 </div>
 </div>
 <div id="bivariate-analysis---correlation-chi-sq-test-and-anova" class="section level1">
 <h1><span class="header-section-number">2</span> Bivariate Analysis - Correlation, Chi-Sq Test and ANOVA</h1>
-<p><br></p>
 <p>The next step is to study the relationship between 2 variables and establish if the relationship is statistically significant. We will check bi-variate analysis for:</p>
 <ul>
 <li>Case 1 - continuous variable versus continuous variable</li>
 <li>Case 2 - continuous variable versus categorical variable</li>
 <li>Case 3 - categorical variable versus categorical variable</li>
 </ul>
-<p><br></p>
 <div id="case-1---continuous-variable-versus-continuous-variable" class="section level2">
 <h2><span class="header-section-number">2.1</span> Case 1 - continuous variable versus continuous variable</h2>
-<p><br></p>
 <p>We use the Pearson correlation coefficient.</p>
-<p><br></p>
-<p><img src="images/3.PNG" width="910" /></p>
-<p><br></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(Prestige$income, Prestige$education)</code></pre></div>
+<p><img src="images/3.PNG" width="1327" /></p>
+<pre class="r"><code>cor(Prestige$income, Prestige$education)</code></pre>
 <pre><code>## [1] 0.5775802</code></pre>
 <p>The correlation suggestes a fairly strong positive correlation, meaning that, the higher the income, the higher the education. We can also check this with a simple scatter with the line of best fit on top.</p>
-<p><br></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> Prestige$education, <span class="dt">y =</span> Prestige$income, <span class="dt">main =</span> <span class="st">&quot;Income vs Education&quot;</span>, <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10000</span>))
-<span class="kw">abline</span>(<span class="kw">lm</span>(income~education, <span class="dt">data =</span> Prestige))</code></pre></div>
+<pre class="r"><code>plot(x = Prestige$education, y = Prestige$income, main = &quot;Income vs Education&quot;, ylim = c(0,10000))
+abline(lm(income~education, data = Prestige))</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-15-1.png" /><!-- --></p>
-<p><br></p>
 <p>If we want to check the statistical significance of this relationship, we can use the <strong>cor.test)()</strong> function. Normally, statistical significance is equivalent to having a p-value less than 5% (0.05). If this is the case, we rejec the null hypothesis, which in this case, will be that the true correlation is equal to 0 and accept that there is a correlation different to 0. Therefore, the relationship is statistically significant.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Prestige$income, Prestige$education)</code></pre></div>
+<pre class="r"><code>cor.test(Prestige$income, Prestige$education)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  Prestige$income and Prestige$education
-## t = 7.0753, df = 100, p-value = 2.079e-10
+## t = 7.0753, df = 100, p-value = 0.0000000002079
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
 ##  0.4315828 0.6940914
 ## sample estimates:
 ##       cor 
 ## 0.5775802</code></pre>
-<p><br></p>
 </div>
 <div id="case-2---continuous-variable-versus-categorical-variable" class="section level2">
 <h2><span class="header-section-number">2.2</span> Case 2 - continuous variable versus categorical variable</h2>
-<p><br></p>
 <p>In this case we can’t use Pearson correlation, so we use ANOVA test. The idea is to compare the mean of the response variable split between the groups of categorical variables. We can calculate the strength of the relationship with the F-ratio. The bigger the F-ratio (which should be more than 1), the stronger the relatioship between x and y. In other words, the pair of variables with higher F-ratio provide higher explanatory power when used in predictive models.</p>
-<p><br></p>
-<p><img src="images/4.PNG" width="1233" /></p>
-<p><br></p>
+<p><img src="images/4.PNG" width="1192" /></p>
 <p>A boxplot can provide the graphical relationships between continuous and categorial variables. In this case, we can see a difference in the “prof” group compared to the “bc” and “wc” by income.</p>
-<p><br></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(income ~<span class="st"> </span>type, <span class="dt">data =</span> Prestige, <span class="dt">main =</span> <span class="st">&quot;Income vs Occupation type&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Income&quot;</span>)</code></pre></div>
+<pre class="r"><code>boxplot(income ~ type, data = Prestige, main = &quot;Income vs Occupation type&quot;, ylab = &quot;Income&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-18-1.png" /><!-- --></p>
-<p><br></p>
 <p>Let’s run an ANOVA test and check the results of it:</p>
 <ul>
 <li>The <em>mean sq</em> of <em>type</em> represents the variance in <em>income</em> between the groups of <em>type</em> variable. In other words, referring to the image above, this will be the “between” group</li>
@@ -775,36 +686,32 @@ text-align: justify}
 <li>The higher the F-ratio, the stronger the relationship. As a consequence, the higher the F-ratio, the lower the p-value. We can check the p-value for statistical significant.</li>
 <li>If the p-value shows significant, then we reject the null hypothesis, which in this case is that all population means are equal compared to the target variable. As we have seen, the <em>prof</em> category seems to behave differently from <em>bc</em> and <em>wc</em>, which is aligned to the ANOVA result which shows that at least one population mean is different from the rest.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">anovamod =<span class="st"> </span><span class="kw">aov</span>(income ~<span class="st"> </span>type, <span class="dt">data =</span> Prestige)
-<span class="kw">summary</span>(anovamod)</code></pre></div>
-<pre><code>##             Df    Sum Sq   Mean Sq F value   Pr(&gt;F)    
-## type         2 5.960e+08 297978078   24.87 2.06e-09 ***
-## Residuals   95 1.138e+09  11980242                     
+<pre class="r"><code>anovamod = aov(income ~ type, data = Prestige)
+summary(anovamod)</code></pre>
+<pre><code>##             Df     Sum Sq   Mean Sq F value        Pr(&gt;F)    
+## type         2  595956156 297978078   24.87 0.00000000206 ***
+## Residuals   95 1138123006  11980242                          
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 4 observations deleted due to missingness</code></pre>
-<p><br></p>
 </div>
 <div id="case-3---categorical-variable-versus-categorical-variable" class="section level2">
 <h2><span class="header-section-number">2.3</span> Case 3 - categorical variable versus categorical variable</h2>
-<p><br></p>
 <p>Final case is when we have 2 categorical variables and we want to check the relatioship between them. In this case we use the test of Chi-squared. Again, the higher the chi-square, the stronger the relatioship between the 2 variables.</p>
-<p><br></p>
-<p><img src="images/5.PNG" width="511" /></p>
-<p><br></p>
+<p><img src="images/5.PNG" width="1000" /></p>
 <p>As we were working with the income variable, if we wanted to perform a chi-sq test, we would need to transform the continuous variable into categorial. Let’s do that and compare against type. As the number of groups increase, the chi-square should be higher. We have a high chi-squared value from the test, but as always, we check the p-value for significance referrence. As we can see, the p-value is less than our normal threshold of 0.05, so we reject the null hypothesis and conclude that the relationship between both variables is significant.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We use the dplyr package to group income into 4 groups. </span>
-Prestige$income_cat =<span class="st"> </span>dplyr::<span class="kw">ntile</span>(Prestige$income,<span class="dv">4</span>)
+<pre class="r"><code># We use the dplyr package to group income into 4 groups. 
+Prestige$income_cat = dplyr::ntile(Prestige$income,4)
 
-<span class="co"># Chi squared test</span>
-<span class="kw">chisq.test</span>(<span class="dt">x =</span> Prestige$type, <span class="dt">y =</span> Prestige$income_cat)</code></pre></div>
+# Chi squared test
+chisq.test(x = Prestige$type, y = Prestige$income_cat)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  Prestige$type and Prestige$income_cat
-## X-squared = 35.762, df = 6, p-value = 3.066e-06</code></pre>
+## X-squared = 35.762, df = 6, p-value = 0.000003066</code></pre>
 <p>As an example, let’s check if any other variable is significant;y related with income. As we know income is a continuous variable and we have already checked the relationship with education (R-pearson correlation) and type (using both ANOVA and chi-squared). To check the rest of the variables (women, prestige and census) we need to use the R-pearson correlation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(Prestige)</code></pre></div>
+<pre class="r"><code>head(Prestige)</code></pre>
 <pre><code>##                     education income women prestige census type income_cat
 ## gov.administrators      13.11  12351 11.16     68.8   1113 prof          4
 ## general.managers        12.26  25879  4.02     69.1   1130 prof          4
@@ -812,37 +719,37 @@ Prestige$income_cat =<span class="st"> </span>dplyr::<span class="kw">ntile</spa
 ## purchasing.officers     11.42   8865  9.11     56.8   1175 prof          4
 ## chemists                14.62   8403 11.68     73.5   2111 prof          4
 ## physicists              15.64  11030  5.13     77.6   2113 prof          4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor</span>(Prestige[,<span class="kw">c</span>(<span class="st">&#39;income&#39;</span>,<span class="st">&#39;women&#39;</span>,<span class="st">&#39;prestige&#39;</span>,<span class="st">&#39;census&#39;</span>)])</code></pre></div>
+<pre class="r"><code>cor(Prestige[,c(&#39;income&#39;,&#39;women&#39;,&#39;prestige&#39;,&#39;census&#39;)])</code></pre>
 <pre><code>##              income      women   prestige     census
 ## income    1.0000000 -0.4410593  0.7149057 -0.3610023
 ## women    -0.4410593  1.0000000 -0.1183342 -0.2270028
 ## prestige  0.7149057 -0.1183342  1.0000000 -0.6345103
 ## census   -0.3610023 -0.2270028 -0.6345103  1.0000000</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Prestige$income, Prestige$women)</code></pre></div>
+<pre class="r"><code>cor.test(Prestige$income, Prestige$women)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  Prestige$income and Prestige$women
-## t = -4.9144, df = 100, p-value = 3.488e-06
+## t = -4.9144, df = 100, p-value = 0.000003488
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
 ##  -0.5853277 -0.2697196
 ## sample estimates:
 ##        cor 
 ## -0.4410593</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Prestige$income, Prestige$prestige)</code></pre></div>
+<pre class="r"><code>cor.test(Prestige$income, Prestige$prestige)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  Prestige$income and Prestige$prestige
-## t = 10.224, df = 100, p-value &lt; 2.2e-16
+## t = 10.224, df = 100, p-value &lt; 0.00000000000000022
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
 ##  0.6044711 0.7983807
 ## sample estimates:
 ##       cor 
 ## 0.7149057</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cor.test</span>(Prestige$income, Prestige$census)</code></pre></div>
+<pre class="r"><code>cor.test(Prestige$income, Prestige$census)</code></pre>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -860,36 +767,32 @@ Prestige$income_cat =<span class="st"> </span>dplyr::<span class="kw">ntile</spa
 </div>
 <div id="outlier-detection" class="section level1">
 <h1><span class="header-section-number">3</span> Outlier detection</h1>
-<p><br></p>
 <p>So far we have learnt how to perform univariate/bivariate analysis, but these analysis should be complemented with treatment of outliers. As an example, if you have an outlier with values of 1 million times more the mean, will skew that same value of the mean. Outlier are basically extreme values in the data, that if ignored, can impact significantly the inferences you make from the analysis.</p>
 <p><strong>What can be considered outliers</strong>. Generally, we can consider outliers those points of data that lie outside 1.5*interquartile-range. Couple of examples below.</p>
-<p><br></p>
-<p><img src="images/6.PNG" width="999" /><img src="images/7.PNG" width="1201" /></p>
-<p><br></p>
+<p><img src="images/6.PNG" width="1233" /><img src="images/7.PNG" width="1175" /></p>
 <p>Let’s find the outliers.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 3 times IQR (interquartile range)</span>
-iqr =<span class="st"> </span><span class="kw">IQR</span>(Prestige$income)
-Prestige$income[Prestige$income &gt;<span class="st"> </span><span class="dv">3</span>*iqr]</code></pre></div>
+<pre class="r"><code># 3 times IQR (interquartile range)
+iqr = IQR(Prestige$income)
+Prestige$income[Prestige$income &gt; 3*iqr]</code></pre>
 <pre><code>## [1] 12351 25879 14163 19263 12480 25308 14558 17498 14032</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Outside of 1.5 * 75th %ile</span>
-third_quartile =<span class="st"> </span><span class="kw">quantile</span>(Prestige$income, <span class="fl">0.75</span>)
-Prestige$income[Prestige$income &gt;<span class="st"> </span><span class="fl">1.5</span>*third_quartile]</code></pre></div>
+<pre class="r"><code># Outside of 1.5 * 75th %ile
+third_quartile = quantile(Prestige$income, 0.75)
+Prestige$income[Prestige$income &gt; 1.5*third_quartile]</code></pre>
 <pre><code>## [1] 12351 25879 14163 19263 12480 25308 14558 17498 14032</code></pre>
 <p><strong>How do we treat outliers?</strong> The first question would be, what happens if these marked points are legitimate points that must have these extreme values? We will cover this in the next question. Otherwise, normally, outliers are indeed strange values that we don’t want to include. One possible treatment is cap (either max or min) the values to something we feel comfortable with.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cap maximum. Replace all values above 95th percentile, with the value corresponding to that percentile.</span>
-Prestige$income[Prestige$income &gt;<span class="st"> </span><span class="kw">quantile</span>(Prestige$income, <span class="fl">0.99</span>)] =<span class="st"> </span><span class="kw">quantile</span>(Prestige$income, <span class="fl">0.99</span>)
+<pre class="r"><code># Cap maximum. Replace all values above 95th percentile, with the value corresponding to that percentile.
+Prestige$income[Prestige$income &gt; quantile(Prestige$income, 0.99)] = quantile(Prestige$income, 0.99)
 
-<span class="co"># Cap minimum. Replace all values below 5th percentile, with the value corresponding to that percentile.</span>
-Prestige$income[Prestige$income &lt;<span class="st"> </span><span class="kw">quantile</span>(Prestige$income, <span class="fl">0.01</span>)] =<span class="st"> </span><span class="kw">quantile</span>(Prestige$income, <span class="fl">0.01</span>)</code></pre></div>
+# Cap minimum. Replace all values below 5th percentile, with the value corresponding to that percentile.
+Prestige$income[Prestige$income &lt; quantile(Prestige$income, 0.01)] = quantile(Prestige$income, 0.01)</code></pre>
 <p><br></p>
 </div>
 <div id="missing-value-treatment" class="section level1">
 <h1><span class="header-section-number">4</span> Missing value treatment</h1>
-<p><br></p>
 <p>In real world datasets, you will probably find many missing values and it is a key requirement knowing how to treat them. Let’s used a modified version of the prestige dataset we were using.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Prestige_miss =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/selva86/datasets/master/Prestige_miss.csv&quot;</span>)
-myData =<span class="st"> </span>Prestige_miss
-<span class="kw">head</span>(myData)</code></pre></div>
+<pre class="r"><code>Prestige_miss = read.csv(&quot;https://raw.githubusercontent.com/selva86/datasets/master/Prestige_miss.csv&quot;)
+myData = Prestige_miss
+head(myData)</code></pre>
 <pre><code>##   education income women prestige census type
 ## 1     13.11  12351 11.16     68.8   1113 prof
 ## 2     12.26  25879  4.02     69.1   1130 prof
@@ -897,7 +800,7 @@ myData =<span class="st"> </span>Prestige_miss
 ## 4     11.42     NA  9.11     56.8   1175 prof
 ## 5     14.62   8403 11.68     73.5   2111 prof
 ## 6     15.64  11030  5.13     77.6   2113 &lt;NA&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(myData)</code></pre></div>
+<pre class="r"><code>summary(myData)</code></pre>
 <pre><code>##    education         income          women          prestige         census       type   
 ##  Min.   : 6.38   Min.   :  611   Min.   : 0.00   Min.   :17.30   Min.   :1113   bc  :43  
 ##  1st Qu.: 8.46   1st Qu.: 4036   1st Qu.: 3.49   1st Qu.:35.25   1st Qu.:3117   prof:30  
@@ -906,7 +809,7 @@ myData =<span class="st"> </span>Prestige_miss
 ##  3rd Qu.:12.59   3rd Qu.: 8131   3rd Qu.:55.10   3rd Qu.:59.80   3rd Qu.:8313            
 ##  Max.   :15.97   Max.   :25879   Max.   :97.51   Max.   :87.20   Max.   :9517            
 ##  NA&#39;s   :7       NA&#39;s   :5       NA&#39;s   :6       NA&#39;s   :3       NA&#39;s   :5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">describe</span>(myData)</code></pre></div>
+<pre class="r"><code>describe(myData)</code></pre>
 <pre><code>## myData 
 ## 
 ##  6  Variables      102  Observations
@@ -949,32 +852,28 @@ myData =<span class="st"> </span>Prestige_miss
 ## Frequency     43    30    21
 ## Proportion 0.457 0.319 0.223
 ## ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</code></pre>
-<p><br></p>
 <div id="types-of-missing-values" class="section level2">
 <h2><span class="header-section-number">4.1</span> Types of missing values</h2>
-<p><br></p>
 <p>Missing values are of 2 types: those that are completely random and those where there is a reason for those values to be missing. In this case, we are going to deal with the more general case of missing completely at random.</p>
 <p>** Guidelines for dealing with missing values **</p>
 <ul>
 <li>If there are large number of observations and all the classes are sufficiently represented, then it might be easier to just delete the records with those missing values.</li>
 <li>On the other hand, if a particular variable is the major contributor of missing values, then it might be worth deleting that variable from the dataset.</li>
 </ul>
-<p><br></p>
 </div>
 <div id="imputing-with-hmisc-package" class="section level2">
 <h2><span class="header-section-number">4.2</span> Imputing with Hmisc package</h2>
-<p><br></p>
 <p>As we can see from the summary above, all variables have missing values, and they form only less than 10% of each variable, so we could take the approach of possibly removing missing values (although we would have to check how many records in total we are removing). Instead of doing that, we will be looking at a technique called <strong>imputation</strong>, which is basically, using the rest of the information, trying to guess what the missing value would be.</p>
 <p>This guess can be as simple as taking the average value of the variable and assigning it to the missing record (or the mode if it’s a categorical variable or even more complex techniques). Check the code for an example.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING REQUIRED PACKAGES
-<span class="co"># install.packages(&#39;Hmisc&#39;) # only run if you haven&#39;t got the package installed.</span>
-<span class="kw">require</span>(Hmisc)
+<pre class="r"><code>## LOADING REQUIRED PACKAGES
+# install.packages(&#39;Hmisc&#39;) # only run if you haven&#39;t got the package installed.
+require(Hmisc)
 
-<span class="co">#Imputing</span>
-myData$education =<span class="st"> </span><span class="kw">impute</span>(myData$education, mean)
-myData$type =<span class="st"> </span><span class="kw">impute</span>(myData$type, mode)
+#Imputing
+myData$education = impute(myData$education, mean)
+myData$type = impute(myData$type, mode)
 
-<span class="kw">summary</span>(myData)</code></pre></div>
+summary(myData)</code></pre>
 <pre><code>## 
 ##  7 values imputed to 10.73884 
 ## 
@@ -988,20 +887,17 @@ myData$type =<span class="st"> </span><span class="kw">impute</span>(myData$type
 ##  3rd Qu.:12.360   3rd Qu.: 8131   3rd Qu.:55.10   3rd Qu.:59.80   3rd Qu.:8313            
 ##  Max.   :15.970   Max.   :25879   Max.   :97.51   Max.   :87.20   Max.   :9517            
 ##                   NA&#39;s   :5       NA&#39;s   :6       NA&#39;s   :3       NA&#39;s   :5</code></pre>
-<p><br></p>
 </div>
 <div id="imputing-with-mice" class="section level2">
 <h2><span class="header-section-number">4.3</span> Imputing with mice</h2>
-<p><br></p>
 <p>As mentioned above, there are other techniques that can be more powerful than imputing by using the mean. For example, the mice function performs 5 different imputations by default, each using a different predictive modelling method. The default method used is called <strong>predictive mean matching</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## LOADING REQUIRED PACKAGES
-<span class="co"># install.packages(&#39;mice&#39;) # only run if you haven&#39;t got the package installed.</span>
-<span class="kw">require</span>(mice)</code></pre></div>
-<pre><code>## Loading required package: mice</code></pre>
-<pre><code>## Warning: package &#39;mice&#39; was built under R version 3.4.2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Imputing</span>
-myData2 =<span class="st"> </span>Prestige_miss
-micemod =<span class="st"> </span><span class="kw">mice</span>(myData2)</code></pre></div>
+<pre class="r"><code>## LOADING REQUIRED PACKAGES
+# install.packages(&#39;mice&#39;) # only run if you haven&#39;t got the package installed.
+require(mice)
+
+#Imputing
+myData2 = Prestige_miss
+micemod = mice(myData2)</code></pre>
 <pre><code>## 
 ##  iter imp variable
 ##   1   1  education  income  women  prestige  census  type
@@ -1029,7 +925,7 @@ micemod =<span class="st"> </span><span class="kw">mice</span>(myData2)</code></
 ##   5   3  education  income  women  prestige  census  type
 ##   5   4  education  income  women  prestige  census  type
 ##   5   5  education  income  women  prestige  census  type</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(micemod)</code></pre></div>
+<pre class="r"><code>summary(micemod)</code></pre>
 <pre><code>## Multiply imputed data set
 ## Call:
 ## mice(data = myData2)
@@ -1053,16 +949,16 @@ micemod =<span class="st"> </span><span class="kw">mice</span>(myData2)</code></
 ## type              1      1     1        1      1    0
 ## Random generator seed value:  NA</code></pre>
 <p>After having performed the <em>mice()</em> function, we can complete the data specifying which method from <em>mice()</em> we want to fill the values with (this can be done by changing the <em>action</em> parameter). If you check the help package: <em>If action is a scalar between 1 and x$m, the function returns the data with imputation number action filled in. Thus, action=1 returns the first completed data set, action=2 returns the second completed data set, and so on. The value of action can also be one of the following strings: ‘long’, ‘broad’, ‘repeated’. See ‘Details’ for the interpretation.</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myData2 =<span class="st"> </span><span class="kw">complete</span>(micemod, <span class="dt">action =</span> <span class="dv">1</span>)
+<pre class="r"><code>myData2 = complete(micemod, action = 1)
 
-<span class="kw">summary</span>(myData2)</code></pre></div>
-<pre><code>##    education          income          women          prestige         census       type   
-##  Min.   : 6.380   Min.   :  611   Min.   : 0.00   Min.   :17.30   Min.   :1113   bc  :47  
-##  1st Qu.: 8.445   1st Qu.: 4106   1st Qu.: 3.27   1st Qu.:35.23   1st Qu.:3120   prof:33  
-##  Median :10.540   Median : 6036   Median :12.38   Median :43.60   Median :5140   wc  :22  
-##  Mean   :10.720   Mean   : 6887   Mean   :29.30   Mean   :47.03   Mean   :5452            
-##  3rd Qu.:12.460   3rd Qu.: 8187   3rd Qu.:55.77   3rd Qu.:59.90   3rd Qu.:8311            
-##  Max.   :15.970   Max.   :25879   Max.   :97.51   Max.   :87.20   Max.   :9517</code></pre>
+summary(myData2)</code></pre>
+<pre><code>##    education          income          women           prestige         census       type   
+##  Min.   : 6.380   Min.   :  611   Min.   : 0.000   Min.   :17.30   Min.   :1113   bc  :47  
+##  1st Qu.: 8.445   1st Qu.: 4106   1st Qu.: 3.623   1st Qu.:35.38   1st Qu.:3112   prof:32  
+##  Median :10.540   Median : 6154   Median :11.525   Median :43.60   Median :5140   wc  :23  
+##  Mean   :10.777   Mean   : 6897   Mean   :28.324   Mean   :47.14   Mean   :5378            
+##  3rd Qu.:12.755   3rd Qu.: 8187   3rd Qu.:51.070   3rd Qu.:59.90   3rd Qu.:8312            
+##  Max.   :15.970   Max.   :25879   Max.   :97.510   Max.   :87.20   Max.   :9517</code></pre>
 </div>
 </div>
 
