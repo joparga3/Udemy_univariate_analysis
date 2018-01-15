@@ -1,0 +1,7 @@
+name: "Performing univariate analysis"
+navbar:
+  title: "Performing univariate analysis"
+  left:
+    - text: "Performing univariate analysis"
+      href: index.html
+

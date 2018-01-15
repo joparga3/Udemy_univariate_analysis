@@ -1,0 +1,401 @@
+---
+title: "Pre-model Building steps"
+author: "Jose Parreno Garcia"
+date: "November 2017"
+output: 
+  html_document:
+    toc: true # table of content true
+    depth: 6  # upto three depths of headings (specified by #, ##, ###, ####)
+    number_sections: true  ## if you want number sections at each table header
+    # theme: spacelab  # many options for theme, this one is my favorite.
+    # highlight: tango  # specifies the syntax highlighting style
+    keep_md: true
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+
+
+```{r set-options, echo=FALSE, cache=FALSE}
+options(width = 250)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source_path = getwd()
+```
+
+```{r results='hide', message=FALSE, warning=FALSE}
+# ----------------------------------------------------------------------
+# Loading libraries
+# ----------------------------------------------------------------------
+library(MASS)
+library(plotly)
+library(ggplot2)
+library(data.table)
+
+# Other
+library(knitr)
+library(psych)
+```
+
+Before we begin predictive modelling or machine learning, it is essential to understand the data and describe relationships between variables. Often preparatory steps are needed before we build and models. In this section we will understand variables using:
+
+* Univariate analysis
+* Bivariate analysis
+* Outlier detection
+* Missing value treatment
+
+<br>
+
+# Univariate analysis.
+
+In this section we will focus on trying to understand:
+
+* Type of variables
+* Measures of central tendency
+* Measures of dispersion
+
+## Types of variables.
+
+We encounter 2 types of variables: continuous or categorical variables. You can check the classificatin of both types of variables in the table below. 
+
+```{r echo=FALSE, fig.width=3, fig.height=3}
+include_graphics(paste0(source_path,"/images/1.PNG"))
+```
+
+## Measures of central tendency
+
+A continuous variable requires the most work. When it comes to unvariate analysis, we compute the measure of central tendency and measures of dispersion. You can remember the measures of tendency by the *3 Ms*: mean, median, mode (mode is actually most useful for categorical data). As per dispersion measures, the coefficient of variation is quite important if we want to compared measures of variables with different ranges.
+
+```{r echo=FALSE, fig.width=3, fig.height=3}
+include_graphics(paste0(source_path,"/images/2.PNG"))
+```
+
+## Checking in R
+
+Check the comments in the R code for any explanations
+
+```{r fig.width=7, fig.height=7}
+## LOADING REQUIRED PACKAGES
+# install.packages('car') # only run if you haven't got the package installed.
+require(car)
+
+## LOADING THE DATA FROM THE PACKAGE
+data(Prestige, package = 'car')
+
+## LOOKING AT THE FIRST ROWS FROM THE DATASET
+head(Prestige)
+```
+
+This data talks about 6 differnt attributes of people in different proffesions. 5 of these variables appear to be numeric and 1 appears to be categorial (type). Let's take the income variable as an example to check some measures of central tendency.
+
+```{r fig.width=7, fig.height=7}
+# In all the checks below you can see we use the argument na.rm=T. This is to ensure that any possible na values are removed from the calculations. I always tend to check the percentage of na per variable to understand if it is worth performing any calculations on them. However, let's just investigate the measures with the na.rm argument.
+
+mean(Prestige$income, na.rm = T)
+median(Prestige$income, na.rm = T)
+sd(Prestige$income, na.rm = T)
+var(Prestige$income, na.rm = T)
+quantile(Prestige$income, probs = c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99), na.rm = T)
+
+```
+
+Now this is interesting, but even just performing this analysis on the rest of the variables in this dataset is tedious (even more if we had hundreds of variables). We could use:
+
+* The **summary()** function.
+* Even better, the **describe()** function from the **Hmisc** package.
+* **stat.desc()** function from the **pastecs** package.
+
+```{r fig.width=7, fig.height=7}
+summary(Prestige)
+```
+
+```{r fig.width=7, fig.height=7}
+## LOADING REQUIRED PACKAGES
+# install.packages('Hmisc') # only run if you haven't got the package installed.
+require(Hmisc)
+
+describe(Prestige)
+```
+
+```{r fig.width=7, fig.height=7}
+## LOADING REQUIRED PACKAGES
+# install.packages('pastecs') # only run if you haven't got the package installed.
+require(pastecs)
+
+stat.desc(Prestige)
+```
+
+So as any example, let's use this to understand better the **Cars93** dataset from the **MASS** package and check one individual column.
+
+```{r fig.width=7, fig.height=7}
+## LOADING REQUIRED PACKAGES
+# install.packages('MASS') # only run if you haven't got the package installed.
+require(MASS)
+
+## LOADING THE DATA FROM THE PACKAGE
+data(Cars93, package = 'MASS')
+
+## LOOKING AT THE FIRST ROWS FROM THE DATASET
+head(Cars93)
+```
+
+```{r fig.width=7, fig.height=7}
+## Summary
+summary(Cars93)
+```
+```{r fig.width=7, fig.height=7}
+## 
+describe(Cars93)
+```
+```{r fig.width=7, fig.height=7}
+## stat desc -> the only weakness of this functon is that it doesn't offer any information about categorial variables
+stat.desc(Cars93)
+```
+
+<br>
+
+# Bivariate Analysis - Correlation, Chi-Sq Test and ANOVA
+
+The next step is to study the relationship between 2 variables and establish if the relationship is statistically significant. We will check bi-variate analysis for:
+
+* Case 1 - continuous variable versus continuous variable
+* Case 2 - continuous variable versus categorical variable
+* Case 3 - categorical variable versus categorical variable
+
+## Case 1 - continuous variable versus continuous variable
+
+
+We use the Pearson correlation coefficient.
+
+
+
+```{r echo=FALSE, fig.width=3, fig.height=3}
+include_graphics(paste0(source_path,"/images/3.PNG"))
+```
+
+
+
+```{r fig.width=7, fig.height=7}
+cor(Prestige$income, Prestige$education)
+```
+
+The correlation suggestes a fairly strong positive correlation, meaning that, the higher the income, the higher the education. We can also check this with a simple scatter with the line of best fit on top.
+
+```{r fig.width=7, fig.height=7}
+plot(x = Prestige$education, y = Prestige$income, main = "Income vs Education", ylim = c(0,10000))
+abline(lm(income~education, data = Prestige))
+```
+
+
+
+If we want to check the statistical significance of this relationship, we can use the **cor.test)()** function. Normally, statistical significance is equivalent to having a p-value less than 5% (0.05). If this is the case, we rejec the null hypothesis, which in this case, will be that the true correlation is equal to 0 and accept that there is a correlation different to 0. Therefore, the relationship is statistically significant.
+
+```{r fig.width=7, fig.height=7}
+cor.test(Prestige$income, Prestige$education)
+```
+
+
+## Case 2 - continuous variable versus categorical variable
+
+In this case we can't use Pearson correlation, so we use ANOVA test. The idea is to compare the mean of the response variable split between the groups of categorical variables. We can calculate the strength of the relationship with the F-ratio. The bigger the F-ratio (which should be more than 1), the stronger the relatioship between x and y. In other words, the pair of variables with higher F-ratio provide higher explanatory power when used in predictive models.
+
+
+
+```{r echo=FALSE, fig.width=3, fig.height=3}
+include_graphics(paste0(source_path,"/images/4.PNG"))
+```
+
+
+
+A boxplot can provide the graphical relationships between continuous and categorial variables. In this case, we can see a difference in the "prof" group compared to the "bc" and "wc" by income.
+
+
+
+```{r fig.width=7, fig.height=7}
+boxplot(income ~ type, data = Prestige, main = "Income vs Occupation type", ylab = "Income")
+```
+
+Let's run an ANOVA test and check the results of it:
+
+* The *mean sq* of *type* represents the variance in *income* between the groups of *type* variable. In other words, referring to the image above, this will be the "between" group
+* The *mean sq* of *Residuals* represents the variance in *income* within the groups of *type* variable. In other words, referring to the image above, this will be the "within" group
+* The value is the "between"/"within"
+* If the *type* variable did actually have some impact on the income, one may expect that the *between* group variance would be higher than the *within* group variance, which means that F-ratio should be greater than 1.
+* The higher the F-ratio, the stronger the relationship. As a consequence, the higher the F-ratio, the lower the p-value. We can check the p-value for statistical significant.
+* If the p-value shows significant, then we reject the null hypothesis, which in this case is that all population means are equal compared to the target variable. As we have seen, the *prof* category seems to behave differently from *bc* and *wc*, which is aligned to the ANOVA result which shows that at least one population mean is different from the rest.
+
+```{r fig.width=7, fig.height=7}
+anovamod = aov(income ~ type, data = Prestige)
+summary(anovamod)
+```
+
+
+## Case 3 - categorical variable versus categorical variable
+
+
+
+Final case is when we have 2 categorical variables and we want to check the relatioship between them. In this case we use the test of Chi-squared. Again, the higher the chi-square, the stronger the relatioship between the 2 variables. 
+
+
+
+```{r echo=FALSE, fig.width=3, fig.height=3}
+include_graphics(paste0(source_path,"/images/5.PNG"))
+```
+
+
+
+As we were working with the income variable, if we wanted to perform a chi-sq test, we would need to transform the continuous variable into categorial. Let's do that and compare against type. As the number of groups increase, the chi-square should be higher. We have a high chi-squared value from the test, but as always, we check the p-value for significance referrence. As we can see, the p-value is less than our normal threshold of 0.05, so we reject the null hypothesis and conclude that the relationship between both variables is significant.
+
+```{r fig.width=7, fig.height=7}
+# We use the dplyr package to group income into 4 groups. 
+Prestige$income_cat = dplyr::ntile(Prestige$income,4)
+
+# Chi squared test
+chisq.test(x = Prestige$type, y = Prestige$income_cat)
+```
+
+As an example, let's check if any other variable is significant;y related with income. As we know income is a continuous variable and we have already checked the relationship with education (R-pearson correlation) and type (using both ANOVA and chi-squared). To check the rest of the variables (women, prestige and census) we need to use the R-pearson correlation.
+
+```{r fig.width=7, fig.height=7}
+head(Prestige)
+```
+
+```{r fig.width=7, fig.height=7}
+cor(Prestige[,c('income','women','prestige','census')])
+cor.test(Prestige$income, Prestige$women)
+cor.test(Prestige$income, Prestige$prestige)
+cor.test(Prestige$income, Prestige$census)
+```
+
+The results show that all the other variables seems to also be significantly correlated with income, although it is clear that the order of magnitude shown by the p-value of *prestige*, shows it is way more significant. As per the type of correlation, we can see from the correlation matrix that income is negatively correlated with *women* and *census*, and positively correlated with *prestige*.
+
+<br>
+
+# Outlier detection
+
+
+
+So far we have learnt how to perform univariate/bivariate analysis, but these analysis should be complemented with treatment of outliers. As an example, if you have an outlier with values of 1 million times more the mean, will skew that same value of the mean. Outlier are basically extreme values in the data, that if ignored, can impact significantly the inferences you make from the analysis. 
+
+**What can be considered outliers**. Generally, we can consider outliers those points of data that lie outside 1.5*interquartile-range. Couple of examples below.
+
+
+
+```{r echo=FALSE, fig.width=3, fig.height=3}
+include_graphics(paste0(source_path,"/images/6.PNG"))
+include_graphics(paste0(source_path,"/images/7.PNG"))
+```
+
+
+
+Let's find the outliers.
+
+```{r fig.width=7, fig.height=7}
+# 3 times IQR (interquartile range)
+iqr = IQR(Prestige$income)
+Prestige$income[Prestige$income > 3*iqr]
+
+# Outside of 1.5 * 75th %ile
+third_quartile = quantile(Prestige$income, 0.75)
+Prestige$income[Prestige$income > 1.5*third_quartile]
+```
+
+**How do we treat outliers?** The first question would be, what happens if these marked points are legitimate points that must have these extreme values? We will cover this in the next question. Otherwise, normally, outliers are indeed strange values that we don't want to include. One possible treatment is cap (either max or min) the values to something we feel comfortable with. 
+
+```{r fig.width=7, fig.height=7}
+# Cap maximum. Replace all values above 95th percentile, with the value corresponding to that percentile.
+Prestige$income[Prestige$income > quantile(Prestige$income, 0.99)] = quantile(Prestige$income, 0.99)
+
+# Cap minimum. Replace all values below 5th percentile, with the value corresponding to that percentile.
+Prestige$income[Prestige$income < quantile(Prestige$income, 0.01)] = quantile(Prestige$income, 0.01)
+```
+
+<br>
+
+# Missing value treatment
+
+
+In real world datasets, you will probably find many missing values and it is a key requirement knowing how to treat them. Let's used a modified version of the prestige dataset we were using.
+
+```{r fig.width=7, fig.height=7}
+Prestige_miss = read.csv("https://raw.githubusercontent.com/selva86/datasets/master/Prestige_miss.csv")
+myData = Prestige_miss
+head(myData)
+```
+
+```{r fig.width=7, fig.height=7}
+summary(myData)
+```
+
+```{r fig.width=7, fig.height=7}
+describe(myData)
+```
+
+## Types of missing values
+
+Missing values are of 2 types: those that are completely random and those where there is a reason for those values to be missing. In this case, we are going to deal with the more general case of missing completely at random.
+
+** Guidelines for dealing with missing values **
+
+* If there are large number of observations and all the classes are sufficiently represented, then it might be easier to just delete the records with those missing values. 
+* On the other hand, if a particular variable is the major contributor of missing values, then it might be worth deleting that variable from the dataset. 
+
+
+## Imputing with Hmisc package
+
+
+As we can see from the summary above, all variables have missing values, and they form only less than 10% of each variable, so we could take the approach of possibly removing missing values (although we would have to check how many records in total we are removing). Instead of doing that, we will be looking at a technique called **imputation**, which is basically, using the rest of the information, trying to guess what the missing value would be.
+
+This guess can be as simple as taking the average value of the variable and assigning it to the missing record (or the mode if it's a categorical variable or even more complex techniques). Check the code for an example.
+
+```{r fig.width=7, fig.height=7}
+## LOADING REQUIRED PACKAGES
+# install.packages('Hmisc') # only run if you haven't got the package installed.
+require(Hmisc)
+
+#Imputing
+myData$education = impute(myData$education, mean)
+myData$type = impute(myData$type, mode)
+
+summary(myData)
+```
+
+## Imputing with mice
+
+
+As mentioned above, there are other techniques that can be more powerful than imputing by using the mean. For example, the mice function performs 5 different imputations by default, each using a different predictive modelling method. The default method used is called **predictive mean matching**.
+
+```{r fig.width=7, fig.height=7}
+## LOADING REQUIRED PACKAGES
+# install.packages('mice') # only run if you haven't got the package installed.
+require(mice)
+
+#Imputing
+myData2 = Prestige_miss
+micemod = mice(myData2)
+
+summary(micemod)
+```
+
+After having performed the *mice()* function, we can complete the data specifying which method from *mice()* we want to fill the values with (this can be done by changing the *action* parameter). If you check the help package: *If action is a scalar between 1 and x$m, the function returns the data with imputation number action filled in. Thus, action=1 returns the first completed data set, action=2 returns the second completed data set, and so on. The value of action can also be one of the following strings: 'long', 'broad', 'repeated'. See 'Details' for the interpretation.*
+
+```{r fig.width=7, fig.height=7}
+myData2 = complete(micemod, action = 1)
+
+summary(myData2)
+```
+
+
+
+
+
+
+
+
+
+
+
